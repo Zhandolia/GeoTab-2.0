@@ -13,7 +13,7 @@ let availableQuestions = []
 let questions = [
     {
         // AD / Andorra /
-        image: "flags/ad.png",
+        image: 'flags/ad.png',
         choice1: 'Andorra',
         choice2: 'Colombia',
         choice3: 'Romania',
@@ -2045,7 +2045,7 @@ getNewQuestion = () => {
     question.innerText = currentQuestion.question
 
     document.getElementById('image').innerHTML=`
-        <img src="${questions[image]}" style="width:150px;height:90px;">
+        <img src="${questions[image]}" style="width:150px;height:90px">
     `;
 
     choices.forEach(choice => {
@@ -2083,7 +2083,7 @@ choices.forEach(choice => {
 })
 
 incrementScore = num => {
-    score +=num
+    score += num
     scoreText.innerText = score
 }
 
