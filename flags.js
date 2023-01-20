@@ -1,13 +1,13 @@
-const question = document.querySelector('#question');
+const image = document.querySelector('#image');
 const choices = Array.from(document.querySelectorAll('.choice-text'));
 const progressText = document.querySelector('#progressText');
 const scoreText = document.querySelector('#score');
 const progressBarFull = document.querySelector('#progressBarFull');
 
-let currentQuestion = {}
+let currentImage = {}
 let acceptingAnswers = true
 let score = 0
-let questionCounter = 0
+let imageCounter = 0
 let availableQuestions = []
 
 let questions = [
@@ -1978,7 +1978,7 @@ let questions = [
     {    
         // YE / Yemen /
         image: "flags/ye.png",
-        choice1: 'Iran',
+        choice1: 'Morocco',
         choice2: 'Iraq',
         choice3: 'Yemen',
         answer: 3,
@@ -2012,7 +2012,7 @@ let questions = [
         image: "flags/zw.png",
         choice1: 'Senegal',
         choice2: 'Zimbabwe',
-        choice3: 'St Lucia',
+        choice3: 'Saint Lucia',
         answer: 2,
     }
 ]
@@ -2020,29 +2020,29 @@ let questions = [
 // document.getElementById('image_shower').src = ``
 
 const SCORE_POINTS = 1
-const MAX_QUESTIONS = 254
+const MAX_IMAGES = 254
 
 startGame = () => {
-    questionCounter = 0
+    imageCounter = 0
     score = 0
     availableQuestions = [...questions]
     getNewQuestion()
 }
 
 getNewQuestion = () => {
-    if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
+    if(availableQuestions.length === 0 || imageCounter > MAX_IMAGES) {
         localStorage.setItem('mostRecentScore', score)
 
         return window.location.assign('/end.html')
     }
 
-    questionCounter++
-    progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}`
-    progressBarFull.style.width = `${(questionCounter/MAX_QUESTIONS) * 1}%`
+    imageCounter++
+    progressText.innerText = `Question ${imageCounter} of ${MAX_IMAGES}`
+    progressBarFull.style.width = `${(imageCounter/MAX_IMAGES) * 1}%`
     
     const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
-    currentQuestion = availableQuestions[questionsIndex]
-    question.innerText = currentQuestion.question
+    currentImage = availableQuestions[questionsIndex]
+    image.innerText = currentImage.image
 
     document.getElementById('image').innerHTML=`
         <img src="${questions[image]}" style="width:150px;height:90px">
@@ -2050,7 +2050,7 @@ getNewQuestion = () => {
 
     choices.forEach(choice => {
         const number = choice.dataset['number']
-        choice.innerText = currentQuestion['choice' + number]
+        choice.innerText = currentImage['choice' + number]
     })
 
     availableQuestions.splice(questionsIndex, 1)
@@ -2066,7 +2066,7 @@ choices.forEach(choice => {
         const selectedChoice = e.target
         const selectedAnswer = selectedChoice.dataset['number']
 
-        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
+        let classToApply = selectedAnswer == currentImage.answer ? 'correct' : 'incorrect'
 
         if(classToApply === 'correct') {
             incrementScore(SCORE_POINTS)

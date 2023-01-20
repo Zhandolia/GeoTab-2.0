@@ -262,4 +262,5 @@ function get_random_image(){
     document.getElementById('image_shower').src = './flags/${selected_image}'
 
 }
+
 */
